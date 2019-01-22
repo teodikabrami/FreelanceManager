@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D666EA8CAD7B8C3739B5413 /* Pods_FreelanceManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE36463430BAD1B13F77217 /* Pods_FreelanceManager.framework */; };
+		9309EBE821F7DCA2009F2558 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9309EBE721F7DCA2009F2558 /* Register.swift */; };
 		930D927421EF243E00857680 /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D927321EF243E00857680 /* NewProjectViewController.swift */; };
 		930D927721EF286700857680 /* NewProjectSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D927621EF286700857680 /* NewProjectSecondViewController.swift */; };
 		930D928D21EF2AC100857680 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D927921EF2AC000857680 /* UIButtonExtension.swift */; };
@@ -52,6 +53,7 @@
 		182E7621A8812E3864C5DDDF /* Pods-FreelanceManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreelanceManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FreelanceManager/Pods-FreelanceManager.debug.xcconfig"; sourceTree = "<group>"; };
 		2CE36463430BAD1B13F77217 /* Pods_FreelanceManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FreelanceManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B25FC932856CAD6247CD2C1 /* Pods-FreelanceManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreelanceManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-FreelanceManager/Pods-FreelanceManager.release.xcconfig"; sourceTree = "<group>"; };
+		9309EBE721F7DCA2009F2558 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		930D927321EF243E00857680 /* NewProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		930D927621EF286700857680 /* NewProjectSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectSecondViewController.swift; sourceTree = "<group>"; };
 		930D927921EF2AC000857680 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		930D928A21EF2AC100857680 /* Recieved */ = {
 			isa = PBXGroup;
 			children = (
+				9309EBE721F7DCA2009F2558 /* Register.swift */,
 			);
 			path = Recieved;
 			sourceTree = "<group>";
@@ -334,6 +337,11 @@
 				TargetAttributes = {
 					939ECC8721EDCBD0007E803C = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -424,6 +432,7 @@
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -438,6 +447,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -476,6 +486,7 @@
 				930D928F21EF2AC100857680 /* UIViewExtension.swift in Sources */,
 				931DDD5021F3432E00E5DC60 /* Authorization.swift in Sources */,
 				930D929A21EF2AC100857680 /* CircleImageView.swift in Sources */,
+				9309EBE821F7DCA2009F2558 /* Register.swift in Sources */,
 				930D929021EF2AC100857680 /* URLExtension.swift in Sources */,
 				93EF003821EF509A00C30F96 /* myProjectTableViewCell.swift in Sources */,
 				930D929221EF2AC100857680 /* HashableExtension.swift in Sources */,

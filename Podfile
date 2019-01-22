@@ -18,5 +18,6 @@ pod 'CDAlertView'
 pod 'lottie-ios'
 pod "UPCarouselFlowLayout"
 pod 'SwiftCharts', '~> 0.6.3'
+pod 'JWTDecode'
 
 end

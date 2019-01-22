@@ -277,31 +277,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ab6-en-0NU" customClass="RoundedButton" customModule="FreelanceManager" customModuleProvider="target">
-                                <rect key="frame" x="32" y="679" width="311" height="34"/>
-                                <color key="backgroundColor" red="0.098499067130000006" green="0.029497472569999999" blue="0.4313995242" alpha="0.52204623289999996" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="IRANSansMobile" family="IRANSansMobile" pointSize="17"/>
-                                <state key="normal" title="ویرایش اطلاعات کاربری">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                        <size key="value" width="0.0" height="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="editProfileButtonPressed:" destination="Jnh-gR-mP5" eventType="touchUpInside" id="A4M-2f-cSo"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16118505599999999" green="0.18188130860000001" blue="0.35966789719999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -316,15 +291,12 @@
                             <constraint firstItem="6xS-e1-pfL" firstAttribute="top" secondItem="7R0-vq-Win" secondAttribute="bottom" constant="16" id="Jfp-65-Umi"/>
                             <constraint firstItem="7j4-ub-sOe" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" constant="16" id="NyQ-mT-UNo"/>
                             <constraint firstItem="7R0-vq-Win" firstAttribute="top" secondItem="5H3-Qh-Cif" secondAttribute="top" id="Oca-Y1-JX9"/>
-                            <constraint firstItem="5H3-Qh-Cif" firstAttribute="bottom" secondItem="Ab6-en-0NU" secondAttribute="bottom" constant="16" id="Qoa-ft-ndY"/>
                             <constraint firstItem="E7A-6y-KbN" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" constant="16" id="Rli-tn-ZvH"/>
                             <constraint firstItem="5H3-Qh-Cif" firstAttribute="trailing" secondItem="E7A-6y-KbN" secondAttribute="trailing" constant="16" id="ZXY-7j-ieA"/>
                             <constraint firstItem="E5m-6g-kHH" firstAttribute="top" secondItem="ZZQ-tc-cwZ" secondAttribute="bottom" constant="16" id="aMU-VE-nR5"/>
                             <constraint firstItem="5H3-Qh-Cif" firstAttribute="trailing" secondItem="7R0-vq-Win" secondAttribute="trailing" id="eOy-cI-P3X"/>
                             <constraint firstItem="ZZQ-tc-cwZ" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" constant="16" id="fFg-Ce-1QC"/>
                             <constraint firstItem="7R0-vq-Win" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" id="g1Q-pI-2pO"/>
-                            <constraint firstItem="Ab6-en-0NU" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" constant="32" id="gMv-Bl-vbb"/>
-                            <constraint firstItem="5H3-Qh-Cif" firstAttribute="trailing" secondItem="Ab6-en-0NU" secondAttribute="trailing" constant="32" id="wQA-EH-dnz"/>
                             <constraint firstItem="E5m-6g-kHH" firstAttribute="leading" secondItem="5H3-Qh-Cif" secondAttribute="leading" constant="16" id="zlX-o1-eHj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5H3-Qh-Cif"/>

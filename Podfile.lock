@@ -72,6 +72,7 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.2):
     - GoogleUtilities/Logger
   - JTAppleCalendar (7.1.6)
+  - JWTDecode (2.1.1)
   - lottie-ios (2.5.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -94,6 +95,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - GooglePlaces
   - JTAppleCalendar (~> 7.0)
+  - JWTDecode
   - lottie-ios
   - NVActivityIndicatorView
   - SideMenu
@@ -116,6 +118,7 @@ SPEC REPOS:
     - GooglePlaces
     - GoogleUtilities
     - JTAppleCalendar
+    - JWTDecode
     - lottie-ios
     - nanopb
     - NVActivityIndicatorView
@@ -139,6 +142,7 @@ SPEC CHECKSUMS:
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   GoogleUtilities: 82f04aeff8426309dbdbc75f6c8accd1e584a5da
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
+  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
@@ -147,6 +151,6 @@ SPEC CHECKSUMS:
   SwiftCharts: 1535b5e228702af2c9c4d60c2a408f2f0f579fa8
   UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
 
-PODFILE CHECKSUM: cc23e439219d60bc30df5a91ecc05f22d13ac887
+PODFILE CHECKSUM: 7c33f0be3fc9ed3c1a4c0f6f486f836e0d06c5cd
 
 COCOAPODS: 1.5.3
