@@ -12,9 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        WebService.instance.register(email: "", fullName: "", password: "") { (_) in
-            //
-        }
+        
     }
 
 

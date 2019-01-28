@@ -44,6 +44,12 @@
 		939ECC9121EDCBD0007E803C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 939ECC8F21EDCBD0007E803C /* Main.storyboard */; };
 		939ECC9321EDCBD2007E803C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 939ECC9221EDCBD2007E803C /* Assets.xcassets */; };
 		939ECC9621EDCBD2007E803C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 939ECC9421EDCBD2007E803C /* LaunchScreen.storyboard */; };
+		93A3CE7721FF01F00041A3BE /* Salary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7621FF01F00041A3BE /* Salary.swift */; };
+		93A3CE7921FF03E70041A3BE /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7821FF03E70041A3BE /* NewProject.swift */; };
+		93A3CE7B21FF069B0041A3BE /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7A21FF069B0041A3BE /* ProjectList.swift */; };
+		93A3CE7D21FF0FF60041A3BE /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7C21FF0FF60041A3BE /* Payments.swift */; };
+		93A3CE7F21FF19BD0041A3BE /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7E21FF19BD0041A3BE /* Contacts.swift */; };
+		93A3CE8121FF1B890041A3BE /* GetFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE8021FF1B890041A3BE /* GetFiles.swift */; };
 		93EF003321EF4F1A00C30F96 /* IndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93EF003121EF4F1A00C30F96 /* IndicatorViewController.xib */; };
 		93EF003421EF4F1A00C30F96 /* IndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF003221EF4F1A00C30F96 /* IndicatorViewController.swift */; };
 		93EF003821EF509A00C30F96 /* myProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF003721EF509A00C30F96 /* myProjectTableViewCell.swift */; };
@@ -91,6 +97,12 @@
 		939ECC9221EDCBD2007E803C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		939ECC9521EDCBD2007E803C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		939ECC9721EDCBD2007E803C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A3CE7621FF01F00041A3BE /* Salary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Salary.swift; sourceTree = "<group>"; };
+		93A3CE7821FF03E70041A3BE /* NewProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProject.swift; sourceTree = "<group>"; };
+		93A3CE7A21FF069B0041A3BE /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
+		93A3CE7C21FF0FF60041A3BE /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
+		93A3CE7E21FF19BD0041A3BE /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		93A3CE8021FF1B890041A3BE /* GetFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFiles.swift; sourceTree = "<group>"; };
 		93EF003121EF4F1A00C30F96 /* IndicatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorViewController.xib; sourceTree = "<group>"; };
 		93EF003221EF4F1A00C30F96 /* IndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
 		93EF003721EF509A00C30F96 /* myProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +196,12 @@
 			isa = PBXGroup;
 			children = (
 				9309EBE721F7DCA2009F2558 /* Register.swift */,
+				93A3CE7621FF01F00041A3BE /* Salary.swift */,
+				93A3CE7821FF03E70041A3BE /* NewProject.swift */,
+				93A3CE7A21FF069B0041A3BE /* ProjectList.swift */,
+				93A3CE7C21FF0FF60041A3BE /* Payments.swift */,
+				93A3CE7E21FF19BD0041A3BE /* Contacts.swift */,
+				93A3CE8021FF1B890041A3BE /* GetFiles.swift */,
 			);
 			path = Recieved;
 			sourceTree = "<group>";
@@ -470,11 +488,13 @@
 			files = (
 				939ECC8E21EDCBD0007E803C /* ViewController.swift in Sources */,
 				931DDD4A21F3418F00E5DC60 /* RegisterViewController.swift in Sources */,
+				93A3CE8121FF1B890041A3BE /* GetFiles.swift in Sources */,
 				930D929E21EF2C5B00857680 /* ListOfProjectViewController.swift in Sources */,
 				930D928D21EF2AC100857680 /* UIButtonExtension.swift in Sources */,
 				930D929721EF2AC100857680 /* GradientView.swift in Sources */,
 				93EF003421EF4F1A00C30F96 /* IndicatorViewController.swift in Sources */,
 				9387788A21F4BCCB0017DB98 /* ProfileViewController.swift in Sources */,
+				93A3CE7721FF01F00041A3BE /* Salary.swift in Sources */,
 				930D929621EF2AC100857680 /* RoundedView.swift in Sources */,
 				930D929921EF2AC100857680 /* InsetTextField.swift in Sources */,
 				930D928E21EF2AC100857680 /* UIViewControllerExtension.swift in Sources */,
@@ -484,13 +504,17 @@
 				930D929121EF2AC100857680 /* ImageViewExtension.swift in Sources */,
 				931DDD5221F3459B00E5DC60 /* Device.swift in Sources */,
 				930D928F21EF2AC100857680 /* UIViewExtension.swift in Sources */,
+				93A3CE7F21FF19BD0041A3BE /* Contacts.swift in Sources */,
 				931DDD5021F3432E00E5DC60 /* Authorization.swift in Sources */,
 				930D929A21EF2AC100857680 /* CircleImageView.swift in Sources */,
+				93A3CE7B21FF069B0041A3BE /* ProjectList.swift in Sources */,
 				9309EBE821F7DCA2009F2558 /* Register.swift in Sources */,
 				930D929021EF2AC100857680 /* URLExtension.swift in Sources */,
 				93EF003821EF509A00C30F96 /* myProjectTableViewCell.swift in Sources */,
 				930D929221EF2AC100857680 /* HashableExtension.swift in Sources */,
 				931DDD4E21F3429400E5DC60 /* WebService.swift in Sources */,
+				93A3CE7921FF03E70041A3BE /* NewProject.swift in Sources */,
+				93A3CE7D21FF0FF60041A3BE /* Payments.swift in Sources */,
 				930D929821EF2AC100857680 /* RoundedButton.swift in Sources */,
 				939ECC8C21EDCBD0007E803C /* AppDelegate.swift in Sources */,
 				930D929421EF2AC100857680 /* UIFontExtension.swift in Sources */,

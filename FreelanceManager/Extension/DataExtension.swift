@@ -15,6 +15,21 @@ extension Data {
         }
     }
 }
+typealias FORMDATA_PARAMETERS = [String:String]
+extension Data {
+    static func createDataBody(withParameters parameters: FORMDATA_PARAMETERS, boundary: String) -> Data {
+        let lineBreak = "\r\n"
+        var body = Data()
+        for (key,value) in parameters {
+            body.append("--\(boundary + lineBreak)")
+            body.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak + lineBreak)")
+            body.append("\(value + lineBreak)")
+        }
+        body.append("--\(boundary)--\(lineBreak)")
+        
+        return body
+    }
+}
 
 public extension UIDevice {
     

@@ -9,5 +9,6 @@
 import Foundation
 
 struct Register: Decodable {
-    var status, token: String
+    var token: String
+    var status: Bool
 }

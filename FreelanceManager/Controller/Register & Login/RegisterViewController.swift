@@ -16,7 +16,9 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        WebService.instance.register(email: "", fullName: "", password: "") { (check) in
+            print(check)
+        }
         // Do any additional setup after loading the view.
     }
     

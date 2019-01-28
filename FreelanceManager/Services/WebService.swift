@@ -14,7 +14,7 @@ class WebService {
     
     static let instance = WebService()
     typealias completion = (_ status: Alert) -> Void
-    private let baseURL = URL.init(string: "151.242.182.159/")!
+    private let baseURL = URL.init(string: "http://budgetapplication.dlinkddns.com:3031/")!
     private let head = ["Authorization":"Bearer" + " " + Authorization.shared.token,
                         "application/json":"application/json"
     ]
@@ -23,22 +23,23 @@ class WebService {
     }
     
     public func register(email: String, fullName: String, password: String, completion: @escaping completion) {
+        print("register")
         let url = baseURL.appendingPathComponent("register")
         var request = URLRequest.init(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let jsonData = [
-            "fullname":"test",
-            "email":"test",
-            "password":"test",
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+       // request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "fullName":"test111",
+            "email":"test111",
+            "password":"test111",
             "osVersion":device.oSVersion,
-            "devModel":device.brand,
+          //  "devModel":device.brand,
             "fcmToken":device.pusheID,
             "platformID":"1"
         ]
-        let jsonEncoder = JSONEncoder()
-        let json = try? jsonEncoder.encode(jsonData)
-        request.httpBody = json
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print(error as Any)
@@ -46,9 +47,40 @@ class WebService {
                 return
             }
             if let data = data {
+                print(String(data: data, encoding: .utf8)!)
                 let decoder = JSONDecoder()
                 guard let register = try? decoder.decode(Register.self, from: data) else { completion(.failed) ; return }
-                print(register)
+                Authorization.shared.authenticationUser(token: register.token, isLoggedIn: true)
+                completion(.success)
+            } else {
+                completion(.failed)
+            }
+        }
+        task.resume()
+    }
+    
+    public func login(email: String, password: String, completion: @escaping completion) {
+        let url = baseURL.appendingPathComponent("login")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "POST"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "email":"test111",
+            "password":"test111"
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(.failed)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let register = try? decoder.decode(Register.self, from: data) else { completion(.failed) ; return }
+                Authorization.shared.authenticationUser(token: register.token, isLoggedIn: true)
                 self.decodeJWT(token: register.token)
                 completion(.success)
             } else {
@@ -56,10 +88,417 @@ class WebService {
             }
         }
         task.resume()
-
+        
         
     }
+    
+    
+    public func getSalary(completion: @escaping (_ salary: Salary?) -> Void)  {
+        let url = baseURL.appendingPathComponent("salary")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "GET"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(nil)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(Salary.self, from: data) else { completion(nil) ; return }
+                completion(decodedJson)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func newProject(name: String, cdate: String, edate: String, price: String, comment: String, downPrice:String, owner: String, tel: String, completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/new")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "POST"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "name":name,
+            "cdate":cdate,
+            "edate":edate,
+            "price":price,
+            "comment":comment,
+            "downPrice":downPrice,
+            "owner":owner,
+            "tel": tel
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func updateProject(projectID: String, name: String, cdate: String, edate: String, price: String, comment: String, downPrice:String, owner: String, tel: String, completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "PUT"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "name":name,
+            "cdate":cdate,
+            "edate":edate,
+            "price":price,
+            "comment":comment,
+            "downPrice":downPrice,
+            "owner":owner,
+            "tel": tel
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
 
+    
+    public func updateStatusOfProject(projectID: String, status: ProjectStatus , completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/statusUpdate")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "PUT"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "projStatus":status.rawValue
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func getAllProjects(completion: @escaping (_ projects: ProjectList?) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "GET"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(nil)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(ProjectList.self, from: data) else { completion(nil) ; return }
+                completion(decodedJson)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func newPayment(projectID: String, date: String, note: String, amount: String , completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/payments/new")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "POST"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "date":date,
+            "note":note,
+            "amount":amount
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    public func updatePayment(projectID: String, paymentId: String, date: String, note: String, amount: String , completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/payments/\(paymentId)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "PUT"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "date":date,
+            "note":note,
+            "amount":amount
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func getProjectPayment(projectID: String, completion: @escaping (_ payments: ProjectPayments?) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/payments/")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "GET"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(nil)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(ProjectPayments.self, from: data) else { completion(nil) ; return }
+            completion(decodedJson)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    public func deleteProjectPayment(projectID: String, paymentID: String ,completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/payments/\(paymentID)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "DELETE"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func newContact(projectID: String, name: String, tel: String, role: String ,completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/contacts/new")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "POST"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "name":name,
+            "tel":tel,
+            "role":role
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func updateContact(projectID: String, contactID: String, name: String, tel: String, role: String ,completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/contacts/\(contactID)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "PUT"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let parameters = [
+            "name":name,
+            "tel":tel,
+            "role":role
+        ]
+        request.httpBody = Data.createDataBody(withParameters: parameters, boundary: boundary)
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func getProjectContacts(projectID: String, completion: @escaping (_ contact: ProjectContacts?) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/contacts/")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "GET"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(nil)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(ProjectContacts.self, from: data) else { completion(nil) ; return }
+                completion(decodedJson)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func deleteProjectContact(projectID: String, contactId: String ,completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/contacts/\(contactId)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "DELETE"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //private
     
@@ -98,9 +537,8 @@ class WebService {
     private func decodeJWT(token: String) {
         guard let jwt = try? decode(jwt: token) else { return }
         let userId = jwt.claim(name: "userID").string ?? ""
-        let status = jwt.claim(name: "status").string ?? ""
-        let iat = jwt.claim(name: "iat").string ?? ""
-        print(userId,status,iat)
+
+        print(userId)
     }
     
     private func generateBoundary() -> String {

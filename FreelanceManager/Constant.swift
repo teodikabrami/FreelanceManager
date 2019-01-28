@@ -13,3 +13,10 @@ enum Alert {
     case success, failed
     
 }
+
+
+enum ProjectStatus: String {
+    case running = "1"
+    case ended = "2"
+    case deleted = "3"
+}
