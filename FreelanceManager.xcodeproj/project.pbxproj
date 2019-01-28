@@ -49,7 +49,7 @@
 		93A3CE7B21FF069B0041A3BE /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7A21FF069B0041A3BE /* ProjectList.swift */; };
 		93A3CE7D21FF0FF60041A3BE /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7C21FF0FF60041A3BE /* Payments.swift */; };
 		93A3CE7F21FF19BD0041A3BE /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE7E21FF19BD0041A3BE /* Contacts.swift */; };
-		93A3CE8121FF1B890041A3BE /* GetFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE8021FF1B890041A3BE /* GetFiles.swift */; };
+		93A3CE8121FF1B890041A3BE /* ProjectFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3CE8021FF1B890041A3BE /* ProjectFiles.swift */; };
 		93EF003321EF4F1A00C30F96 /* IndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93EF003121EF4F1A00C30F96 /* IndicatorViewController.xib */; };
 		93EF003421EF4F1A00C30F96 /* IndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF003221EF4F1A00C30F96 /* IndicatorViewController.swift */; };
 		93EF003821EF509A00C30F96 /* myProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF003721EF509A00C30F96 /* myProjectTableViewCell.swift */; };
@@ -102,7 +102,7 @@
 		93A3CE7A21FF069B0041A3BE /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
 		93A3CE7C21FF0FF60041A3BE /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		93A3CE7E21FF19BD0041A3BE /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		93A3CE8021FF1B890041A3BE /* GetFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFiles.swift; sourceTree = "<group>"; };
+		93A3CE8021FF1B890041A3BE /* ProjectFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFiles.swift; sourceTree = "<group>"; };
 		93EF003121EF4F1A00C30F96 /* IndicatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorViewController.xib; sourceTree = "<group>"; };
 		93EF003221EF4F1A00C30F96 /* IndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
 		93EF003721EF509A00C30F96 /* myProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				93A3CE7A21FF069B0041A3BE /* ProjectList.swift */,
 				93A3CE7C21FF0FF60041A3BE /* Payments.swift */,
 				93A3CE7E21FF19BD0041A3BE /* Contacts.swift */,
-				93A3CE8021FF1B890041A3BE /* GetFiles.swift */,
+				93A3CE8021FF1B890041A3BE /* ProjectFiles.swift */,
 			);
 			path = Recieved;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 			files = (
 				939ECC8E21EDCBD0007E803C /* ViewController.swift in Sources */,
 				931DDD4A21F3418F00E5DC60 /* RegisterViewController.swift in Sources */,
-				93A3CE8121FF1B890041A3BE /* GetFiles.swift in Sources */,
+				93A3CE8121FF1B890041A3BE /* ProjectFiles.swift in Sources */,
 				930D929E21EF2C5B00857680 /* ListOfProjectViewController.swift in Sources */,
 				930D928D21EF2AC100857680 /* UIButtonExtension.swift in Sources */,
 				930D929721EF2AC100857680 /* GradientView.swift in Sources */,

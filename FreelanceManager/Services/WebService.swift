@@ -480,11 +480,83 @@ class WebService {
     
     
     
+    func postMultipartFormDataRequest(projectID: String, note: String, photo: Data?, completion: @escaping (_ status: Bool) -> Void) {
+        let url = baseURL.appendingPathComponent("/projects/\(projectID)/files/new")
+        let parameter = ["note":note]
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "POST"
+        let boundary = generateBoundary()
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        let dataBody = createDataBody(withParameters: parameter, media: photo, boundary: boundary)
+        request.httpBody = dataBody
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
     
+    public func getProjectFiles(projectID: String, completion: @escaping (_ contact: ProjectFiles?) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/files/")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "GET"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(nil)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(ProjectFiles.self, from: data) else { completion(nil) ; return }
+                completion(decodedJson)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
     
-    
-    
-    
+    public func deleteProjectFiles(projectID: String, fileID: String ,completion: @escaping (_ status: Bool) -> Void)  {
+        let url = baseURL.appendingPathComponent("projects/\(projectID)/files/\(fileID)")
+        var request = URLRequest.init(url: url)
+        request.httpMethod = "DELETE"
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.allHTTPHeaderFields = head
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error as Any)
+                completion(false)
+                return
+            }
+            if let data = data {
+                print(String(data: data, encoding: .utf8)!)
+                let decoder = JSONDecoder()
+                guard let decodedJson = try? decoder.decode(NewProject.self, from: data) else { completion(false) ; return }
+                decodedJson.status ? completion(true) : completion(false)
+            } else {
+                completion(false)
+            }
+        }
+        task.resume()
+    }
     
     
     
